@@ -12,14 +12,14 @@ import liked from "../assets/001-like.png";
 import unliked from "../assets/002-heart.png";
 import close from "../assets/003-left-arrow.png";
 
-// console.log('Дошел до сюда');
+console.log('Дошел до сюда');
 
 function CurrentPhoto (props) {
-  console.log(props);
+  const idPhoto = location.pathname.split("photos/")[1];
+  getPhoto(idPhoto);
   useEffect(() => {
     document.body.style.overflowY = "hidden";
-    getPhoto(props.match.params.id);
-  }, [props.photo])
+  }, [])
 
   function getPhoto(id) {
     unsplashGetPhoto(id).then(photo => {
@@ -39,7 +39,6 @@ function CurrentPhoto (props) {
     },
   };
 
-  const id = props.photo.id;
   const url = props.photo.links.html;
   const author = props.photo.user.name;
   const image = props.photo.urls.small;
@@ -47,7 +46,22 @@ function CurrentPhoto (props) {
   const date = getFormattedDate(props.photo.updated_at);
 
   return (
-    <div>Перешел на отдельное фото</div>
+    <div className="overlay-modal">
+      <article className="full-photo">
+        <Link to="/">
+          <button
+            className="full-photo__close-button"
+            style={bgImages.close}
+          />
+        </Link>
+        <h2 className="full-photo__heading">
+          <a href={url}>{author}</a>
+        </h2>
+        <img alt={'image'} className="full-photo__image" src={image} />
+        <p className="full-photo__likes-count">Нравится: {likesCount}</p>
+        <time className="full-photo__time">{date}</time>
+      </article>
+    </div>
   )
 }
 
