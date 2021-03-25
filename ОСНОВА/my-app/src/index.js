@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createBrowserHistory } from "history";
-import './GLOBAL.css';
-import { createStore, combineReducers } from "redux";
+import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { Route, Router, Switch } from "react-router-dom";
+import { createStore, combineReducers } from "redux";
+import { createBrowserHistory } from "history";
 import photos from "./reducers/photos";
 import currentPhoto from "./reducers/currentPhoto";
 import Photos from "./containers/Photos";
 import CurrentPhoto from "./containers/CurrentPhoto";
+// Импортируем стили
+import './GLOBAL.css';
 
 // История
 const customHistory = createBrowserHistory();
@@ -18,15 +19,15 @@ const store = createStore(rootReducer);
 // Присваиваем номер страницы
 localStorage.setItem("page", "1");
 
-
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={customHistory}>
-      <Switch>
-        <Route exact path="/" component={Photos} />
-        <Route path="/photos/:id" component={CurrentPhoto} />
-      </Switch>
-    </Router>
-  </Provider>,
+    <Provider store={store}>
+      <BrowserRouter history={customHistory}>
+        <Switch>
+          <Route exact path="/" component={Photos} />
+          <Route exact path="/photos/:id" component={CurrentPhoto} />
+          <Redirect to={"/"} />
+        </Switch>
+      </BrowserRouter>
+    </Provider>,
   document.getElementById('root')
 );

@@ -12,13 +12,15 @@ import liked from "../assets/001-like.png";
 import unliked from "../assets/002-heart.png";
 import close from "../assets/003-left-arrow.png";
 
-console.log('Дошел до сюда');
+const styleSimpleBar = {
+  maxHeight: "300px"
+}
 
 function CurrentPhoto (props) {
-  const idPhoto = location.pathname.split("photos/")[1];
-  getPhoto(idPhoto);
   useEffect(() => {
     document.body.style.overflowY = "hidden";
+    getPhoto(props.match.params.id);
+    document.body.style.overflowY = "auto";
   }, [])
 
   function getPhoto(id) {
@@ -44,30 +46,35 @@ function CurrentPhoto (props) {
   const image = props.photo.urls.small;
   const likesCount = props.photo.likes;
   const date = getFormattedDate(props.photo.updated_at);
+  // Основной контент
+  const mainContent = <article className="full-photo">
+    <Link to="/">
+      <button
+        className="full-photo__close-button"
+        style={bgImages.close}
+      />
+    </Link>
+    <h2 className="full-photo__heading">
+      <a href={url}>{author}</a>
+    </h2>
+    <img alt={'image'} className="full-photo__image" src={image} />
+    <p className="full-photo__likes-count">Нравится: {likesCount}</p>
+    <time className="full-photo__time">{date}</time>
+  </article>
+  // Контекнт при загрузке
+  const loadContent = <div>Подождите...</div>;
 
   return (
-    <div className="overlay-modal">
-      <article className="full-photo">
-        <Link to="/">
-          <button
-            className="full-photo__close-button"
-            style={bgImages.close}
-          />
-        </Link>
-        <h2 className="full-photo__heading">
-          <a href={url}>{author}</a>
-        </h2>
-        <img alt={'image'} className="full-photo__image" src={image} />
-        <p className="full-photo__likes-count">Нравится: {likesCount}</p>
-        <time className="full-photo__time">{date}</time>
-      </article>
-    </div>
+      <div className="overlay-modal">
+        {
+          props.photo.id ? mainContent : loadContent
+        }
+      </div>
   )
 }
 
 function mapStateToProps(state) {
   return {
-    photos: state.photos,
     photo: state.currentPhoto,
   };
 }

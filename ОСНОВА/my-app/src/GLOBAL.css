@@ -8,16 +8,14 @@
 
 body {
   min-width: 320px;
-
   margin: 0;
-
   background-color: #f9f9f9;
-
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 16px;
-
   color: black;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 img {
@@ -64,15 +62,43 @@ button:active, button:focus {
   overflow: hidden;
 }
 
-.header,
+.header {
+  margin-bottom: 10px;
+}
+
 .main {
   margin-bottom: 50px;
 }
 
-.header,
-.footer {
-  padding: 10px;
+.header {
+  padding: 5px;
+}
+
+.header {;
   background: #8f8ffc;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 90%;
+  right: 0;
+  background: black;
+  color: white;
+}
+
+.header__icon {
+  height: 25px;
+  width: 25px;
+}
+
+.header__logo {
+  width: 100px;
+  height: 25px;
 }
 
 .main {
@@ -85,11 +111,8 @@ button:active, button:focus {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
-.photos-list>:nth-child(-n+3) {
-  margin-top: 0;
-}
+
 .photos-item {
   margin-top: 20px;
 }
@@ -98,10 +121,14 @@ button:active, button:focus {
   cursor: pointer;
   padding: 10px;
   color: white;
-  background: blue;
+  background: #8f8ffc;
   border: 2px solid rgba(0,0,0,0);
   border-radius: 20px;
   transition: border .5s ease-in-out;
+}
+
+.simplebar-vertical {
+  bottom: 30px;
 }
 
 .button-more:hover {

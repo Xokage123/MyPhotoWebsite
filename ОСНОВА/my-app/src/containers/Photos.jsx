@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import SimpleBar from 'simplebar-react';
 import { loadPhotos } from "../actions/actions";
 import {unsplashGetListPhotos} from "../unsplash/unsplash";
 import getFormattedDate from "../utils";
 import Header from "../case/Header";
 import FullPhoto from "./FullPhoto";
 import Footer from "../case/Footer";
+import 'simplebar/dist/simplebar.min.css';
+
+const styleSimpleBar = {
+  maxHeight: "250px",
+}
 
 function Photos (props) {
    function loadPhotos() {
@@ -21,34 +27,36 @@ function Photos (props) {
   return (
     <>
       <Header/>
-      <main className={'main'}>
-        <ul className={'photos-list'}>
-          {
-            props.photos.map((element, index) => {
-              return (
-                <FullPhoto
-                  key={element.id}
-                  index={index}
-                  image={element.urls.thumb}
-                  id={element.id}
-                  author={element.user.name}
-                  url={element.user.links.html}
-                  likesCount={element.likes}
-                  date={getFormattedDate(element.updated_at)}
-                />
-              )
-            })
-          }
-        </ul>
-        <button
-          className={'button-more'}
-          onClick={() => {
-            loadPhotos();
-          }}
-        >
-          Show More
-        </button>
-      </main>
+      <SimpleBar style={styleSimpleBar}>
+        <main className={'main'}>
+          <ul className={'photos-list'}>
+            {
+              props.photos.map((element, index) => {
+                return (
+                  <FullPhoto
+                    key={element.id}
+                    index={index}
+                    image={element.urls.thumb}
+                    id={element.id}
+                    author={element.user.name}
+                    url={element.user.links.html}
+                    likesCount={element.likes}
+                    date={getFormattedDate(element.updated_at)}
+                  />
+                )
+              })
+            }
+          </ul>
+          <button
+            className={'button-more'}
+            onClick={() => {
+              loadPhotos();
+            }}
+          >
+            Show More
+          </button>
+        </main>
+      </SimpleBar>
       <Footer/>
     </>
   )
