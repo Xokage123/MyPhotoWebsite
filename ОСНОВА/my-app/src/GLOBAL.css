@@ -15,7 +15,6 @@ body {
   font-size: 16px;
   color: black;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 img {
@@ -66,15 +65,8 @@ button:active, button:focus {
   margin-bottom: 10px;
 }
 
-.main {
-  margin-bottom: 50px;
-}
-
 .header {
   padding: 5px;
-}
-
-.header {;
   background: #8f8ffc;
 }
 
@@ -82,11 +74,9 @@ button:active, button:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  top: 90%;
-  right: 0;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 10px;
   background: black;
   color: white;
 }
@@ -105,12 +95,12 @@ button:active, button:focus {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .photos-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .photos-item {
@@ -125,10 +115,6 @@ button:active, button:focus {
   border: 2px solid rgba(0,0,0,0);
   border-radius: 20px;
   transition: border .5s ease-in-out;
-}
-
-.simplebar-vertical {
-  bottom: 30px;
 }
 
 .button-more:hover {
@@ -195,6 +181,7 @@ header {
 }
 
 .photo-gallery__item {
+  cursor: pointer;
   position: relative;
   margin: 10px;
   padding: 5px;
@@ -219,6 +206,15 @@ header {
 .photo-gallery__heading {
   padding-bottom: 10px;
   font-size: 16px;
+  transition: color .4s ease-in-out;
+}
+
+.photo-gallery__heading:hover {
+  color: #8f8ffc;
+}
+
+.photo-gallery__heading:active {
+  color: blue;
 }
 
 .photo-gallery__image {
@@ -362,5 +358,8 @@ header {
 
   .logo__user-data {
     display: none;
+  }
+  .photos-list {
+    justify-content: center;
   }
 }

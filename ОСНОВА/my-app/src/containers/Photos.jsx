@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import SimpleBar from 'simplebar-react';
 import { loadPhotos } from "../actions/actions";
 import {unsplashGetListPhotos} from "../unsplash/unsplash";
 import getFormattedDate from "../utils";
@@ -8,10 +7,6 @@ import Header from "../case/Header";
 import FullPhoto from "./FullPhoto";
 import Footer from "../case/Footer";
 import 'simplebar/dist/simplebar.min.css';
-
-const styleSimpleBar = {
-  maxHeight: "250px",
-}
 
 function Photos (props) {
    function loadPhotos() {
@@ -27,7 +22,6 @@ function Photos (props) {
   return (
     <>
       <Header/>
-      <SimpleBar style={styleSimpleBar}>
         <main className={'main'}>
           <ul className={'photos-list'}>
             {
@@ -56,7 +50,6 @@ function Photos (props) {
             Show More
           </button>
         </main>
-      </SimpleBar>
       <Footer/>
     </>
   )

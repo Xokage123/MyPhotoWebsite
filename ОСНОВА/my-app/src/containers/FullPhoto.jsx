@@ -13,7 +13,7 @@ function FullPhoto (props) {
     <li className="photo-gallery__item" key={key}>
       <article className="photo-gallery__wrapper">
         <h2 className="photo-gallery__heading">
-          <a href={url}>{author}</a>
+          <a href={url} target={"_blank"}>{author}</a>
         </h2>
         <Link to={`/photos/${id}`}>
           <img alt={'img'} className="photo-gallery__image" src={image} />
