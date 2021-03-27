@@ -8,18 +8,25 @@ import FullPhoto from "./FullPhoto";
 import Footer from "../case/Footer";
 import 'simplebar/dist/simplebar.min.css';
 
-function test (props) {
-  const page = localStorage.getItem("page");
-  unsplashGetListPhotos(page).then((answer) => {
-    props.loadPhotos(answer);
-    localStorage.setItem("page", `${Number(page)+1}`)
-  });
-}
+let checkStart = true;
 
 function Photos (props) {
-  useEffect(() => {
-    test(props);
-  }, [])
+  // useEffect(() => {
+  //   test(props);
+  // }, [props])
+
+  function loadPhotos () {
+    const page = localStorage.getItem("page");
+    unsplashGetListPhotos(page).then((answer) => {
+      props.loadPhotos(answer);
+      localStorage.setItem("page", `${Number(page)+1}`)
+    });
+  }
+
+  if (checkStart) {
+    checkStart = false;
+    loadPhotos();
+  }
 
   return (
     <>
