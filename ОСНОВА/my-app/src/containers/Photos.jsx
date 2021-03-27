@@ -11,7 +11,7 @@ import 'simplebar/dist/simplebar.min.css';
 function Photos (props) {
   useEffect(() => {
     loadPhotos();
-  }, [''])
+  }, [loadPhotos])
 
   const loadPhotos = () => {
     const page = localStorage.getItem("page");
