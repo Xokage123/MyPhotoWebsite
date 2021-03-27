@@ -11,17 +11,17 @@ import 'simplebar/dist/simplebar.min.css';
 function Photos (props) {
   useEffect(() => {
     loadPhotos();
-  }, [this.loadPhotos])
-
-  const loadPhotos = useCallback(() => {
-    return () => {
-      const page = localStorage.getItem("page");
-      unsplashGetListPhotos(page).then((answer) => {
-        props.loadPhotos(answer);
-        localStorage.setItem("page", `${Number(page)+1}`)
-      });
-    }
   }, [])
+
+  function test () {
+    const page = localStorage.getItem("page");
+    unsplashGetListPhotos(page).then((answer) => {
+      props.loadPhotos(answer);
+      localStorage.setItem("page", `${Number(page)+1}`)
+    });
+  }
+
+  const loadPhotos = useCallback(test, []);
 
   return (
     <>
