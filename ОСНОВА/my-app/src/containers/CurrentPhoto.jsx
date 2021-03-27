@@ -14,11 +14,11 @@ import close from "../assets/003-left-arrow.png";
 
 function CurrentPhoto (props) {
   useEffect(() => {
-    return () => {
       document.body.style.overflowY = "hidden";
       getPhoto(props);
-      document.body.style.overflowY = "auto";
-    }
+      return () => {
+        document.body.style.overflowY = "auto";
+      }
   }, [props])
   const getPhoto = (props) => {
     const id = props.match.params.id;
