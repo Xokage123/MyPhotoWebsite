@@ -9,7 +9,7 @@ const myOptionOath = {
 }
 
 const authorizationAddress = `https://unsplash.com/oauth/authorize?client_id=${myOptionOath.id}&redirect_uri=${myOptionOath.url}&response_type=${myOptionOath.type}&scope=${myOptionOath.scope}`;
-
+console.log(authorizationAddress);
 export default function Authorize () {
   useEffect(()=> {
     // window.location.assign(authorizationAddress)
