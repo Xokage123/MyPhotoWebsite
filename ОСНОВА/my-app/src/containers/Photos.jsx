@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback} from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadPhotos } from "../actions/actions";
 import {unsplashGetListPhotos} from "../unsplash/unsplash";
@@ -8,20 +8,18 @@ import FullPhoto from "./FullPhoto";
 import Footer from "../case/Footer";
 import 'simplebar/dist/simplebar.min.css';
 
+function test (props) {
+  const page = localStorage.getItem("page");
+  unsplashGetListPhotos(page).then((answer) => {
+    props.loadPhotos(answer);
+    localStorage.setItem("page", `${Number(page)+1}`)
+  });
+}
+
 function Photos (props) {
   useEffect(() => {
-    loadPhotos();
+    loadPhotos(props);
   }, [])
-
-  function test () {
-    const page = localStorage.getItem("page");
-    unsplashGetListPhotos(page).then((answer) => {
-      props.loadPhotos(answer);
-      localStorage.setItem("page", `${Number(page)+1}`)
-    });
-  }
-
-  const loadPhotos = useCallback(test, []);
 
   return (
     <>
