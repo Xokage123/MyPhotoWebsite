@@ -18,7 +18,7 @@ function test (props) {
 
 function Photos (props) {
   useEffect(() => {
-    loadPhotos(props);
+    test(props);
   }, [])
 
   return (
