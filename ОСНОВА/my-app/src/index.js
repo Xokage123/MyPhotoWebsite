@@ -6,6 +6,7 @@ import { createStore, combineReducers } from "redux";
 import { createBrowserHistory } from "history";
 import photos from "./reducers/photos";
 import currentPhoto from "./reducers/currentPhoto";
+import Authorize from "./connection/authorize";
 import Photos from "./containers/Photos";
 import CurrentPhoto from "./containers/CurrentPhoto";
 // Импортируем стили
@@ -23,7 +24,8 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter history={customHistory}>
         <Switch>
-          <Route exact path="/" component={Photos} />
+          <Route exact path="/" component={Authorize} />
+          <Route exact path="/photos" component={Photos} />
           <Route exact path="/photos/:id" component={CurrentPhoto} />
           <Redirect to={"/"} />
         </Switch>
