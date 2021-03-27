@@ -19,7 +19,7 @@ function loadPhotosStart (props) {
 function Photos (props) {
   useEffect(() => {
     loadPhotosStart(props);
-  }, [loadPhotosStart])
+  }, [props, loadPhotosStart])
 
   return (
     <>
