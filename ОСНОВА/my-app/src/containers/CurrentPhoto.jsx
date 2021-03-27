@@ -7,6 +7,7 @@ import { getPhoto } from "../actions/actions";
 import { unsplashGetPhoto } from "../unsplash/unsplash";
 
 import getFormattedDate from "../utils";
+console.log('Ntcn');
 
 import liked from "../assets/001-like.png";
 import unliked from "../assets/002-heart.png";
