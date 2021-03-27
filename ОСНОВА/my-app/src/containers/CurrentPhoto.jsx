@@ -19,7 +19,7 @@ function CurrentPhoto (props) {
       return () => {
         document.body.style.overflowY = "auto";
       }
-  }, [props.match.params.id])
+  }, [props])
   const getPhoto = (id) => {
     unsplashGetPhoto(id).then(photo => {
       props.getPhoto(photo);
