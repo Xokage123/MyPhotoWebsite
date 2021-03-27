@@ -15,13 +15,12 @@ import close from "../assets/003-left-arrow.png";
 function CurrentPhoto (props) {
   useEffect(() => {
       document.body.style.overflowY = "hidden";
-      getPhoto(props);
+      getPhoto(props.match.params.id);
       return () => {
         document.body.style.overflowY = "auto";
       }
-  }, [props])
-  const getPhoto = (props) => {
-    const id = props.match.params.id;
+  }, [props.match.params.id])
+  const getPhoto = (id) => {
     unsplashGetPhoto(id).then(photo => {
       props.getPhoto(photo);
     })
