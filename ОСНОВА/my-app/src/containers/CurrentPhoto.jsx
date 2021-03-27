@@ -12,19 +12,20 @@ import liked from "../assets/001-like.png";
 import unliked from "../assets/002-heart.png";
 import close from "../assets/003-left-arrow.png";
 
-const getPhoto = (props) => {
-  const id = props.match.params.id;
-  unsplashGetPhoto(id).then(photo => {
-    props.getPhoto(photo);
-  })
-}
-
 function CurrentPhoto (props) {
   useEffect(() => {
-    document.body.style.overflowY = "hidden";
-    getPhoto(props);
-    document.body.style.overflowY = "auto";
+    return () => {
+      document.body.style.overflowY = "hidden";
+      getPhoto(props);
+      document.body.style.overflowY = "auto";
+    }
   }, [props])
+  const getPhoto = (props) => {
+    const id = props.match.params.id;
+    unsplashGetPhoto(id).then(photo => {
+      props.getPhoto(photo);
+    })
+  }
 
   const bgImages = {
     liked: {
