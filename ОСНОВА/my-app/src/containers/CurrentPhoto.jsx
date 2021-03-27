@@ -21,6 +21,7 @@ function CurrentPhoto (props) {
       }
   }, [props])
   const getPhoto = (id) => {
+    console.log(id)
     unsplashGetPhoto(id).then(photo => {
       props.getPhoto(photo);
     })
