@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback} from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -12,16 +12,16 @@ import liked from "../assets/001-like.png";
 import unliked from "../assets/002-heart.png";
 import close from "../assets/003-left-arrow.png";
 
-function CurrentPhoto (props) {
-  const getPhoto = useCallback((id) => {
-    unsplashGetPhoto(id).then(photo => {
-      props.getPhoto(photo);
-    })
-  }, [this.id])
+const getPhoto = (props, id) => {
+  unsplashGetPhoto(id).then(photo => {
+    props.getPhoto(photo);
+  })
+}
 
+function CurrentPhoto (props) {
   useEffect(() => {
     document.body.style.overflowY = "hidden";
-    getPhoto(props.match.params.id);
+    getPhoto(props, props.match.params.id);
     document.body.style.overflowY = "auto";
   }, [props.match.params.id, getPhoto])
 
