@@ -10,7 +10,7 @@ import getFormattedDate from "../utils";
 
 import liked from "../assets/001-like.png";
 import unliked from "../assets/002-heart.png";
-import close from "../ass ets/003-left-arrow.png";
+import close from "../assets/003-left-arrow.png";
 
 function CurrentPhoto (props) {
   const openModalWindow = useCallback(() => {
