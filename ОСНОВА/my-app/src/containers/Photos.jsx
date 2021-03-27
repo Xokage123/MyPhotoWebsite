@@ -11,11 +11,7 @@ import 'simplebar/dist/simplebar.min.css';
 let checkStart = true;
 
 function Photos (props) {
-  // useEffect(() => {
-  //   test(props);
-  // }, [props])
-
-  function loadPhotos () {
+  const loadPhotos = () => {
     const page = localStorage.getItem("page");
     unsplashGetListPhotos(page).then((answer) => {
       props.loadPhotos(answer);
