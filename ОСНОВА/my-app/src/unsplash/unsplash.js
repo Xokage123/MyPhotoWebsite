@@ -1,5 +1,3 @@
-"use strict";
-
 import { createApi } from 'unsplash-js';
 
 const unsplash = createApi({
