@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useCallback} from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -10,14 +10,15 @@ import getFormattedDate from "../utils";
 
 import liked from "../assets/001-like.png";
 import unliked from "../assets/002-heart.png";
-import close from "../assets/003-left-arrow.png";
+import close from "../ass ets/003-left-arrow.png";
 
 function CurrentPhoto (props) {
-  useEffect(() => {
-    document.body.style.overflowY = "hidden";
-    getPhoto(props.match.params.id);
-    document.body.style.overflowY = "auto";
-  })
+  const openModalWindow = useCallback(() => {
+      document.body.style.overflowY = "hidden";
+      getPhoto(props.match.params.id);
+      document.body.style.overflowY = "auto";
+  }, [props.match.param.id])
+  useEffect(openModalWindow);
 
   function getPhoto(id) {
     unsplashGetPhoto(id).then(photo => {
