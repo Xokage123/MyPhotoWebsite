@@ -42,7 +42,7 @@ function CurrentPhoto (props) {
   const date = getFormattedDate(props.photo.updated_at);
   // Основной контент
   const mainContent = <article className="full-photo">
-    <Link to="/">
+    <Link to="/photos">
       <button
         className="full-photo__close-button"
         style={bgImages.close}
