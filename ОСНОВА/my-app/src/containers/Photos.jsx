@@ -8,7 +8,7 @@ import FullPhoto from "./FullPhoto";
 import Footer from "../case/Footer";
 import 'simplebar/dist/simplebar.min.css';
 
-function loadPhotos (props) {
+function loadPhotosStart (props) {
   const page = localStorage.getItem("page");
   unsplashGetListPhotos(page).then((answer) => {
     props.loadPhotos(answer);
@@ -18,8 +18,8 @@ function loadPhotos (props) {
 
 function Photos (props) {
   useEffect(() => {
-    loadPhotos(props);
-  }, [loadPhotos])
+    loadPhotosStart(props);
+  }, [loadPhotosStart])
 
   return (
     <>
