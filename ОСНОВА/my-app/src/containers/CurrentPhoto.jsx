@@ -12,16 +12,12 @@ import liked from "../assets/001-like.png";
 import unliked from "../assets/002-heart.png";
 import close from "../assets/003-left-arrow.png";
 
-const styleSimpleBar = {
-  maxHeight: "300px"
-}
-
 function CurrentPhoto (props) {
   useEffect(() => {
     document.body.style.overflowY = "hidden";
     getPhoto(props.match.params.id);
     document.body.style.overflowY = "auto";
-  }, [])
+  }, [props.match.params.id, getPhoto])
 
   function getPhoto(id) {
     unsplashGetPhoto(id).then(photo => {
@@ -57,7 +53,7 @@ function CurrentPhoto (props) {
     <h2 className="full-photo__heading">
       <a href={url}>{author}</a>
     </h2>
-    <img alt={'image'} className="full-photo__image" src={image} />
+    <img alt="test" className="full-photo__image" src={image} />
     <p className="full-photo__likes-count">Нравится: {likesCount}</p>
     <time className="full-photo__time">{date}</time>
   </article>

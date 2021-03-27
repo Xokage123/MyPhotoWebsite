@@ -12,7 +12,7 @@ const authorizationAddress = `https://unsplash.com/oauth/authorize?client_id=${m
 
 export default function Authorize () {
   useEffect(()=> {
-    window.location.assign(authorizationAddress)
+    // window.location.assign(authorizationAddress)
   },[])
 
   return (

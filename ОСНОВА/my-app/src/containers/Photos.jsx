@@ -18,7 +18,7 @@ function Photos (props) {
   }
   useEffect(() => {
     loadPhotos();
-  }, [])
+  }, [loadPhotos])
   return (
     <>
       <Header/>
