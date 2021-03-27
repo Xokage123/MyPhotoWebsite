@@ -19,7 +19,7 @@ function Photos (props) {
       props.loadPhotos(answer);
       localStorage.setItem("page", `${Number(page)+1}`)
     });
-  }, [])
+  }, [props])
 
   return (
     <>
