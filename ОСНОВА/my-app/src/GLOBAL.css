@@ -334,6 +334,7 @@ header {
 .full-photo__likes-count {
   font-weight: bold;
   font-size: 15px;
+  margin-bottom: 10px;
 }
 
 .full-photo__time {

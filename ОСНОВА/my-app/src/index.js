@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
-import { createBrowserHistory } from "history";
 import photos from "./reducers/photos";
 import currentPhoto from "./reducers/currentPhoto";
 import Authorize from "./connection/authorize";
@@ -12,8 +11,6 @@ import CurrentPhoto from "./containers/CurrentPhoto";
 // Импортируем стили
 import './GLOBAL.css';
 
-// История
-const customHistory = createBrowserHistory();
 // Создаем хранилище состояний
 const rootReducer = combineReducers({photos, currentPhoto});
 const store = createStore(rootReducer);
@@ -22,7 +19,7 @@ localStorage.setItem("page", "1");
 
 ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter history={customHistory}>
+      <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Authorize} />
           <Route exact path="/photos" component={Photos} />

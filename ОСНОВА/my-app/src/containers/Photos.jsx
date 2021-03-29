@@ -7,8 +7,20 @@ import Header from "../case/Header";
 import FullPhoto from "./FullPhoto";
 import Footer from "../case/Footer";
 import 'simplebar/dist/simplebar.min.css';
+import options from "../CONST";
+
 
 let checkStart = true;
+const FETCH_URL = `https://unsplash.com/oauth/token?client_id=${options.access_key}&client_secret=${options.secret_key}&redirect_uri=${options.URI}&code=${options.code}&grant_type=${options.grant_type}`;
+fetch(FETCH_URL, {
+  method: 'POST'
+}).then(answer => {
+  let json = answer.json().then(answer => {
+    localStorage.setItem("access_token", answer.access_token);
+    localStorage.setItem("refresh_token", answer.refresh_token);
+    console.log(answer);
+  })
+})
 
 function Photos (props) {
   const loadPhotos = () => {

@@ -1,18 +1,12 @@
-import { useEffect } from "react";
+import { useEffect } from "react"
+import options from "../CONST"
 
-// Code генерируется в браузере
-const myOptionOath = {
-  id: "df7ICabs2U1sK_fvyU2BuzlCLv-eduqU51fMxIn6Hvs",
-  url: `${window.location.href}photos`,
-  type: "code",
-  scope: "public+read_user"
-}
-
-const authorizationAddress = `https://unsplash.com/oauth/authorize?client_id=${myOptionOath.id}&redirect_uri=${myOptionOath.url}&response_type=${myOptionOath.type}&scope=${myOptionOath.scope}`;
+// Адрес, куда нужно перекинуть пользователя
+const authorizationAddress = `https://unsplash.com/oauth/authorize?client_id=${options.access_key}&redirect_uri=${options.URI}&response_type=${options.response_type}&scope=${options.scope}`;
 console.log(authorizationAddress);
 export default function Authorize () {
   useEffect(()=> {
-    // window.location.assign(authorizationAddress)
+    window.location.assign(authorizationAddress)
   },[])
 
   return (
