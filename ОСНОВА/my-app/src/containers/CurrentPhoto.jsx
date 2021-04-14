@@ -4,7 +4,11 @@ import { connect } from "react-redux";
 
 import { getPhoto, likePhoto, unlikePhoto} from "../actions/actions";
 
-import {unsplashGetPhoto } from "../unsplash/unsplash";
+import { 
+  unsplashGetPhoto,
+  unsplashLikePhoto,
+  unsplashUnlikePhoto
+} from "../unsplash/unsplash";
 
 import getFormattedDate from "../utils";
 
@@ -14,20 +18,9 @@ import close from "../assets/003-left-arrow.png";
 
 const bgImages = {
   liked: {
-    width: "20px",
-    height: "20px",
-    border: "none",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
     backgroundImage: "url(" + liked + ")",
-    background: "white"
   },
   unliked: {
-    width: "20px",
-    height: "20px",
-    border: "none",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
     backgroundImage: "url(" + unliked + ")",
   },
   close: {
@@ -51,15 +44,18 @@ function CurrentPhoto (props) {
       }
   }, []);
 
-  function likePhoto (id) {
-    fetch(`https://unsplash.com/oauth/photos/${id}/like`, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-      }
-    }).then(answer => console.log(answer));
-    console.log(`https://unsplash.com/oauth/photos/${id}/like`)
-    console.log(id);
+  function likePhoto(id) {
+    if (props.photo.liked_by_user) {
+      unsplashUnlikePhoto(id).then(info => {
+        console.log(info);
+        props.unlikePhoto(info.photo.likes, info.photo.liked_by_user);
+      });
+    } else {
+      unsplashLikePhoto(id).then(info => {
+        console.log(info);
+        props.likePhoto(info.photo.likes, info.photo.liked_by_user);
+      });
+    }
   }
   const id = props.photo.id;
   const url = props.photo.links.html;
@@ -83,7 +79,7 @@ function CurrentPhoto (props) {
     </h2>
     <img alt="test" className="full-photo__image" src={image} />
     <p className="full-photo__likes-count">Нравится: {likesCount}</p>
-    <button onClick={() => likePhoto(id)} style={ bgImages.unliked } />
+    <button onClick={() => likePhoto(id)} className="like-photo__button" style={ props.photo.liked_by_user ? bgImages.liked :  bgImages.unliked } />
     <time className="full-photo__time">{date}</time>
   </article>
   // Контекнт при загрузке
@@ -106,8 +102,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getPhoto: (photo) => dispatch(getPhoto(photo)),
-    likePhoto: (id) => dispatch(likePhoto(id)),
-    unlikePhoto: (id) => dispatch(unlikePhoto(id))
+    likePhoto: (like, check) => dispatch(likePhoto(like, check)),
+    unlikePhoto: (like, check) => dispatch(unlikePhoto(like, check))
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentPhoto);

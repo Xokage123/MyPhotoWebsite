@@ -18,7 +18,6 @@ fetch(FETCH_URL, {
   let json = answer.json().then(answer => {
     localStorage.setItem("access_token", answer.access_token);
     localStorage.setItem("refresh_token", answer.refresh_token);
-    console.log(answer);
   })
 })
 
@@ -45,8 +44,7 @@ function Photos (props) {
               props.photos.map((element, index) => {
                 return (
                   <FullPhoto
-                    key={element.id}
-                    index={index}
+                    key={index}
                     image={element.urls.thumb}
                     id={element.id}
                     author={element.user.name}

@@ -3,8 +3,8 @@ module.exports = {
     secret_key: "3cVeyZ3__ekbRdS5MuHkXN9yj4MFWCauLCVzE8hGhtA",
     URI: 'urn:ietf:wg:oauth:2.0:oob',
     response_type: "code",
-    scope: "public",
+    scope: "public+write_likes",
     // Каждый раз генерировать по новой
-    code: "25Q0irmGlRxUsDzmjCflwQ_dIrhyZdf5-JPerd6-osw",
+    code: "UDF6eradLPnMyOSEMkscPlSNHpCpghGdhBg9lzW1msE",
     grant_type: "authorization_code"
 }
