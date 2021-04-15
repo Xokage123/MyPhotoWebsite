@@ -28,3 +28,10 @@ export const unlikePhoto = (likecount, checkLike) => {
         checkLike
     };
 };
+// Экшен на дизлайк фотографии
+export const updateArrayPhoto = (photo) => {
+    return {
+        type: "UPDATE_PHOTO",
+        photo
+    };
+};

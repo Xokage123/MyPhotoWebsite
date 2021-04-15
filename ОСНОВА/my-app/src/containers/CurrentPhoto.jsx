@@ -1,10 +1,15 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { getPhoto, likePhoto, unlikePhoto} from "../actions/actions";
+import {
+  getPhoto,
+  likePhoto,
+  unlikePhoto,
+  updateArrayPhoto
+} from "../actions/actions";
 
-import { 
+import {
   unsplashGetPhoto,
   unsplashLikePhoto,
   unsplashUnlikePhoto
@@ -32,16 +37,17 @@ const styleBack = {
   alignItems: "center"
 }
 
-function CurrentPhoto (props) {
+function CurrentPhoto(props) {
   console.log(props);
   useEffect(() => {
-      document.body.style.overflowY = "hidden";
-      unsplashGetPhoto(props.match.params.id).then(photo => {
-        props.getPhoto(photo);
-      })
-      return () => {
-        document.body.style.overflowY = "auto";
-      }
+    document.body.style.overflowY = "hidden";
+    unsplashGetPhoto(props.match.params.id).then(photo => {
+      updateArrayPhoto(props.photo);
+      props.getPhoto(photo);
+    })
+    return () => {
+      document.body.style.overflowY = "auto";
+    }
   }, []);
 
   function likePhoto(id) {
@@ -79,31 +85,34 @@ function CurrentPhoto (props) {
     </h2>
     <img alt="test" className="full-photo__image" src={image} />
     <p className="full-photo__likes-count">Нравится: {likesCount}</p>
-    <button onClick={() => likePhoto(id)} className="like-photo__button" style={ props.photo.liked_by_user ? bgImages.liked :  bgImages.unliked } />
+    <button onClick={() => likePhoto(id)} className="like-photo__button" style={props.photo.liked_by_user ? bgImages.liked : bgImages.unliked} />
     <time className="full-photo__time">{date}</time>
   </article>
   // Контекнт при загрузке
   const loadContent = <div>Подождите...</div>;
 
   return (
-      <div className="overlay-modal">
-        {
-          props.photo.id ? mainContent : loadContent
-        }
-      </div>
+    <div className="overlay-modal">
+      {
+        props.photo.id ? mainContent : loadContent
+      }
+    </div>
   )
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     photo: state.currentPhoto,
+    photosList: state.photos
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
     getPhoto: (photo) => dispatch(getPhoto(photo)),
     likePhoto: (like, check) => dispatch(likePhoto(like, check)),
-    unlikePhoto: (like, check) => dispatch(unlikePhoto(like, check))
+    unlikePhoto: (like, check) => dispatch(unlikePhoto(like, check)),
+    updateArrayPhoto: (photo) => dispatch(updateArrayPhoto(photo)),
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentPhoto);
