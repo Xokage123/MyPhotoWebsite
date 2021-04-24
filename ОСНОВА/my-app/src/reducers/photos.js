@@ -3,14 +3,14 @@ const photos = (state = [], action) => {
         case "LOAD_PHOTOS":
             return [...state, ...action.photos];
         case "UPDATE_PHOTO":
-            const newArray = state.filter((element) => {
-                if (element.id !== action.photo.id) {
-                    return true;
+            const newArray = state.map(element => {
+                if (element.id === action.photo.id) {
+                    return action.photo;
+                } else {
+                    return element;
                 }
-            })
-            newArray.push(action.photo);
-            console.log(newArray);
-            return newArray;
+            });
+            return newArray
         default:
             return state;
     }

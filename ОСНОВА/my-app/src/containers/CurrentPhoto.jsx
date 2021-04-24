@@ -42,9 +42,8 @@ function CurrentPhoto(props) {
   useEffect(() => {
     document.body.style.overflowY = "hidden";
     unsplashGetPhoto(props.match.params.id).then(photo => {
-      updateArrayPhoto(props.photo);
       props.getPhoto(photo);
-    })
+    });
     return () => {
       document.body.style.overflowY = "auto";
     }
@@ -55,11 +54,13 @@ function CurrentPhoto(props) {
       unsplashUnlikePhoto(id).then(info => {
         console.log(info);
         props.unlikePhoto(info.photo.likes, info.photo.liked_by_user);
+        updateArrayPhoto(info.photo);
       });
     } else {
       unsplashLikePhoto(id).then(info => {
         console.log(info);
         props.likePhoto(info.photo.likes, info.photo.liked_by_user);
+        updateArrayPhoto(info.photo);
       });
     }
   }
