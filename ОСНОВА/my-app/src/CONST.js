@@ -5,6 +5,6 @@ module.exports = {
     response_type: "code",
     scope: "public+write_likes",
     // Каждый раз генерировать по новой
-    code: "LNAfiFPr6n_kaGvTPUcoYgxCe-jTM5XL7y1ww9CJ1ow",
+    code: "CZOdzpufZQsCH19NSCq0qDnMGrPfdfuBxODp6qKBfT8",
     grant_type: "authorization_code"
 }

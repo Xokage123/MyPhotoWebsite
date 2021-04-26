@@ -10,7 +10,7 @@ const photos = (state = [], action) => {
                     return element;
                 }
             });
-            return newArray
+            return newArray;
         default:
             return state;
     }
