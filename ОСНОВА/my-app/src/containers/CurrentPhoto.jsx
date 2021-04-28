@@ -46,7 +46,7 @@ function CurrentPhoto(props) {
     return () => {
       document.body.style.overflowY = "auto";
     }
-  }, []);
+  }, [props]);
 
   function likePhoto(id) {
     if (props.photo.liked_by_user) {
