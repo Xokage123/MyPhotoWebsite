@@ -4,7 +4,7 @@ module.exports = {
     URI: 'https://my-photo-website.vercel.app/photos',
     response_type: "code",
     scope: "public+write_likes",
-    // Каждый раз генерировать по новой
-    code: "CZOdzpufZQsCH19NSCq0qDnMGrPfdfuBxODp6qKBfT8",
+    // Для тестов
+    // code: "CZOdzpufZQsCH19NSCq0qDnMGrPfdfuBxODp6qKBfT8",
     grant_type: "authorization_code"
 }

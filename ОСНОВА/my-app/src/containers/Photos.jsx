@@ -12,7 +12,9 @@ import options from "../CONST";
 
 
 let checkStart = true;
-const FETCH_URL = `https://unsplash.com/oauth/token?client_id=${options.access_key}&client_secret=${options.secret_key}&redirect_uri=${options.URI}&code=${options.code}&grant_type=${options.grant_type}`;
+// Считываем код
+const code = window.location.search.split('code=')[1];
+const FETCH_URL = `https://unsplash.com/oauth/token?client_id=${options.access_key}&client_secret=${options.secret_key}&redirect_uri=${options.URI}&code=${code}&grant_type=${options.grant_type}`;
 getTheToken(FETCH_URL);
 
 function Photos(props) {
