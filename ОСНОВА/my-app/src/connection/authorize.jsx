@@ -11,6 +11,6 @@ export default function Authorize () {
   },[])
 
   return (
-    <div>Загрузка ...</div>
+    <div>Загрузка...</div>
   )
 }
